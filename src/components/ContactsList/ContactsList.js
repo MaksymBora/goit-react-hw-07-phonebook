@@ -35,6 +35,7 @@ export const ContactList = ({ stateItem }) => {
 
   const contactsAmount = useSelector(state => state.contacts.items.length);
   const nameFromFilter = useSelector(state => state.filter);
+
   const filteredContacts = contacts.filter(({ name }) =>
     name.toLowerCase().includes(nameFromFilter.toLowerCase())
   );
@@ -46,7 +47,7 @@ export const ContactList = ({ stateItem }) => {
     dispatch(getAllContactsThunk());
   }, [dispatch]);
 
-  const handleContactClick = contactId => {
+  const handleContactDetailsClick = contactId => {
     navigate(`contact/${contactId}`, { state: stateItem });
   };
 
@@ -75,7 +76,7 @@ export const ContactList = ({ stateItem }) => {
             return (
               <TableRawContent
                 key={contact.id}
-                onClick={() => handleContactClick(contact.id)}
+                onClick={() => handleContactDetailsClick(contact.id)}
               >
                 <TableDataName>
                   <Avatar
@@ -107,7 +108,7 @@ export const ContactList = ({ stateItem }) => {
 
                       const isConfirmed = window.confirm('Delete contact?');
                       if (isConfirmed) {
-                        // dispatch(removeContact(contact.id));
+                        dispatch(removeContact(contact.id));
                       }
                     }}
                   >

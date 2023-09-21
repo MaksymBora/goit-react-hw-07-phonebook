@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { updatePhonebook } from 'redux/contactsSlice';
+import { updatePhonebook } from 'redux/selectors';
 import {
   StyledForm,
   Wrapper,

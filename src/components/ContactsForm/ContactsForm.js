@@ -9,7 +9,8 @@ import {
 } from './ContactsForm.styled';
 import { PatternFormat } from 'react-number-format';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNewContact, updatePhonebook } from 'redux/contactsSlice';
+import { addNewContact } from 'redux/contactsSlice';
+import { updatePhonebook } from 'redux/selectors';
 import { TextField } from '@mui/material';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';

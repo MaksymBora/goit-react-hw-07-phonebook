@@ -14,6 +14,11 @@ export const postContacts = async ({ name, number }) => {
   return response.data;
 };
 
+export const deleteContacts = async id => {
+  const response = await axios.delete(`/contacts/${id}`);
+  return response.data;
+};
+
 export const getAllContactsThunk = createAsyncThunk(
   'contacts/getContacts',
   async (_, thunkAPI) => {
@@ -32,6 +37,18 @@ export const addNewContact = createAsyncThunk(
   async ({ name, number }, thunkAPI) => {
     try {
       const response = await postContacts({ name, number });
+      return response;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const removeContact = createAsyncThunk(
+  'contacts/deleteContact',
+  async (id, thunkAPI) => {
+    try {
+      const response = await deleteContacts(id);
       return response;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -60,6 +77,15 @@ const handlePostFulfilled = (state, action) => {
   state.error = null;
 };
 
+const handleDeleteFulfilled = (state, action) => {
+  state.isLoading = false;
+  state.error = null;
+  const index = state.items.findIndex(
+    contact => contact.id === action.payload.id
+  );
+  state.items.splice(index, 1);
+};
+
 const slice = createSlice({
   name: 'contacts',
   initialState: {
@@ -74,38 +100,23 @@ const slice = createSlice({
       .addCase(getAllContactsThunk.rejected, handleRejected)
       .addCase(addNewContact.pending, handlePending)
       .addCase(addNewContact.fulfilled, handlePostFulfilled)
-      .addCase(addNewContact.rejected, handleRejected);
+      .addCase(addNewContact.rejected, handleRejected)
+      .addCase(removeContact.pending, handlePending)
+      .addCase(removeContact.fulfilled, handleDeleteFulfilled)
+      .addCase(removeContact.rejected, handleRejected);
   },
-  reducers: {
-    addNewContact(state, action) {
-      state.items.push(action.payload);
-    },
-    removeContact(state, action) {
-      state.items = state.items.filter(item => item.id !== action.payload);
-      toast.success(<div>Contact deleted!</div>, {
-        duration: 4000,
-        icon: '✅',
-      });
-    },
-    updateContact(state, action) {
-      const updatedContact = action.payload;
-      const currentContact = state.items.findIndex(
-        contact => contact.id === updatedContact.id
-      );
 
-      if (currentContact !== -1) {
-        state.items[currentContact] = updatedContact;
-      }
-    },
-  },
+  //   updateContact(state, action) {
+  //     const updatedContact = action.payload;
+  //     const currentContact = state.items.findIndex(
+  //       contact => contact.id === updatedContact.id
+  //     );
+
+  //     if (currentContact !== -1) {
+  //       state.items[currentContact] = updatedContact;
+  //     }
+  //   },
+  // },
 });
 
 export const contactsReducer = slice.reducer;
-
-// Selectors
-
-export const updatePhonebook = state => state.contacts.items;
-
-export const isLoading = state => state.contacts.isLoading;
-
-export const error = state => state.contacts.error;

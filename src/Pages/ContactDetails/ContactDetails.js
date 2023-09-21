@@ -1,6 +1,7 @@
 import { Suspense, useRef } from 'react';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { updatePhonebook } from 'redux/selectors';
 import {
   BackBtn,
   AvatarWrapper,
@@ -14,7 +15,7 @@ import {
 } from './ContactDetails.styled';
 import { TbArrowBackUp } from 'react-icons/tb';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { removeContact, updatePhonebook } from 'redux/contactsSlice';
+import { removeContact } from 'redux/contactsSlice';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const ContactDetails = () => {
@@ -29,14 +30,14 @@ const ContactDetails = () => {
 
   const backLinkLocation = useRef(location.state?.from ?? '/');
 
-  // const handleDelete = () => {
-  //   const isConfirmed = window.confirm('Delete contact?');
+  const handleDelete = () => {
+    const isConfirmed = window.confirm('Delete contact?');
 
-  //   if (isConfirmed) {
-  //     dispatch(removeContact(id));
-  //     navigate('/');
-  //   }
-  // };
+    if (isConfirmed) {
+      dispatch(removeContact(id));
+      navigate('/');
+    }
+  };
 
   const handleContactEdit = () => {
     navigate(`edit`, { state: { from: location } });
@@ -59,15 +60,15 @@ const ContactDetails = () => {
         </AvatarWrapper>
 
         <BtnWrapper>
-          {/* <EditBtnWrapper type="button" onClick={() => handleContactEdit()}>
+          <EditBtnWrapper type="button" onClick={() => handleContactEdit()}>
             <EditButton>Edit</EditButton>
-          </EditBtnWrapper> */}
+          </EditBtnWrapper>
 
-          {/* <RemoveBtnWrapper>
+          <RemoveBtnWrapper>
             <RemoveButton typeof="button" onClick={handleDelete}>
               Delete
             </RemoveButton>
-          </RemoveBtnWrapper> */}
+          </RemoveBtnWrapper>
         </BtnWrapper>
       </TopContent>
       <hr style={{ marginTop: '20px', marginBottom: '40px' }} />
