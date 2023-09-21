@@ -1,6 +1,8 @@
 import {lazy} from 'react'
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "components/Layout/Layout";
+
+
 // import Home from 'Pages/Home';
 // import AddContacts from 'Pages/AddContacts/AddContacts';
 // import ContactDetails from "Pages/ContactDetails/ContactDetails";
@@ -15,6 +17,8 @@ const ContactEdit = lazy(() => import('../../Pages/ContactEdit/ContactEdit'));
 const AddContacts = lazy(() => import('../../Pages/AddContacts/AddContacts'));
 
 export const App = () => {
+
+
     
     return (
       <>
@@ -23,7 +27,7 @@ export const App = () => {
             <Route index element={ <Home /> } />
             <Route path="contact/:id" element={ <ContactDetails /> } >
               <Route index element={ <PhoneView/>} />
-              <Route path="edit" element={ <ContactEdit/>} />
+              {/* <Route path="edit" element={ <ContactEdit/>} /> */}
             </Route>
             <Route path="addContact" element={ <AddContacts />} />
           </Route>

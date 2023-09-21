@@ -1,12 +1,80 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 import toast from 'react-hot-toast';
+
+axios.defaults.baseURL = `https://6507561d3a38daf4803f70fa.mockapi.io`;
+
+export const fetchContacts = async () => {
+  const response = await axios.get('/contacts');
+  return response.data;
+};
+
+export const postContacts = async ({ name, number }) => {
+  const response = await axios.post('/contacts', { name, number });
+  return response.data;
+};
+
+export const getAllContactsThunk = createAsyncThunk(
+  'contacts/getContacts',
+  async (_, thunkAPI) => {
+    try {
+      const response = await fetchContacts();
+
+      return response;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const addNewContact = createAsyncThunk(
+  'contacts/addNewContact',
+  async ({ name, number }, thunkAPI) => {
+    try {
+      const response = await postContacts({ name, number });
+      return response;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+const handlePending = state => {
+  state.isLoading = true;
+};
+
+const handleFulfilled = (state, action) => {
+  state.isLoading = false;
+  state.items = action.payload;
+  state.error = null;
+};
+
+const handleRejected = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
+
+const handlePostFulfilled = (state, action) => {
+  state.isLoading = false;
+  state.items.push(action.payload);
+  state.error = null;
+};
 
 const slice = createSlice({
   name: 'contacts',
   initialState: {
     items: [],
+    isLoading: false,
+    error: null,
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(getAllContactsThunk.pending, handlePending)
+      .addCase(getAllContactsThunk.fulfilled, handleFulfilled)
+      .addCase(getAllContactsThunk.rejected, handleRejected)
+      .addCase(addNewContact.pending, handlePending)
+      .addCase(addNewContact.fulfilled, handlePostFulfilled)
+      .addCase(addNewContact.rejected, handleRejected);
   },
   reducers: {
     addNewContact(state, action) {
@@ -34,64 +102,10 @@ const slice = createSlice({
 
 export const contactsReducer = slice.reducer;
 
-const persistConfig = {
-  key: 'root',
-  storage,
-};
-
-export const persistedContactsReducer = persistReducer(
-  persistConfig,
-  contactsReducer
-);
-
-export const { addNewContact, removeContact, updateContact } = slice.actions;
-
 // Selectors
 
 export const updatePhonebook = state => state.contacts.items;
 
-// ======= VANILLA REDUX =======//
+export const isLoading = state => state.contacts.isLoading;
 
-// export const addNewContact = data => {
-//   return {
-//     type: 'contacts/addNewContact',
-//     payload: data,
-//   };
-// };
-
-// export const removeContact = id => {
-//   return {
-//     type: 'contacts/removeContact',
-//     payload: id,
-//   };
-// };
-
-// // { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-// // { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-// // { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-// // { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-
-// export const contactsReducer = (
-//   state = [
-//     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-//     { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-//     { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-//     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-//   ],
-//   action
-// ) => {
-//   switch (action.type) {
-//     case 'contacts/addNewContact':
-//       const newContact = {
-//         id: nanoid(),
-//         name: action.payload.name,
-//         number: action.payload.number,
-//       };
-//       return [...state, newContact];
-//     case 'contacts/removeContact':
-//       return state.filter(contact => contact.id !== action.payload);
-
-//     default:
-//       return state;
-//   }
-// };
+export const error = state => state.contacts.error;

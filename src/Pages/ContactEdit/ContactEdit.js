@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { updateContact, updatePhonebook } from 'redux/contactsSlice';
+import { updatePhonebook } from 'redux/contactsSlice';
 import {
   StyledForm,
   Wrapper,
@@ -44,7 +44,7 @@ const ContactEdit = () => {
 
     const updatedContact = { name: values.name, number: values.number, id };
 
-    dispatch(updateContact(updatedContact));
+    // dispatch(updateContact(updatedContact));
 
     toast.success(
       <div>

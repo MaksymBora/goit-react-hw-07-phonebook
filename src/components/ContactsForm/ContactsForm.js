@@ -1,5 +1,4 @@
 import { ErrorMessage, Field, Formik } from 'formik';
-import { nanoid } from 'nanoid';
 import { FiUserPlus } from 'react-icons/fi';
 import * as Yup from 'yup';
 import {
@@ -37,7 +36,7 @@ export const ContactsForm = () => {
       return alert(`${values.number} is already in contacts`);
     }
 
-    dispatch(addNewContact({ ...values, id: nanoid() }));
+    dispatch(addNewContact({ ...values }));
     toast.success(
       <div>
         <b>{values.name}</b> added in phonebook
