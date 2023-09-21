@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { updatePhonebook } from 'redux/selectors';
 import {
   StyledForm,
@@ -15,6 +15,7 @@ import { TextField } from '@mui/material';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import toast from 'react-hot-toast';
+import { editContact } from 'redux/contactsSlice';
 
 const ContactsSchema = Yup.object().shape({
   name: Yup.string().required('* Name is required'),
@@ -26,6 +27,7 @@ const ContactEdit = () => {
   const { id } = useParams();
   const currentContact = allcontacts.find(contact => contact.id === id);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -34,17 +36,11 @@ const ContactEdit = () => {
   };
 
   const handleSubmit = values => {
-    if (allcontacts.find(contact => contact.name === values.name)) {
-      return alert(`${values.name} is already in contacts`);
-    }
-
-    if (allcontacts.find(contact => contact.number === values.number)) {
-      return alert(`${values.number} is already in contacts`);
-    }
-
     const updatedContact = { name: values.name, number: values.number, id };
 
-    // dispatch(updateContact(updatedContact));
+    dispatch(editContact(updatedContact));
+
+    navigate(`/`);
 
     toast.success(
       <div>

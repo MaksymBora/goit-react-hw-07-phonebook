@@ -19,6 +19,13 @@ export const deleteContacts = async id => {
   return response.data;
 };
 
+export const updateContacts = async (id, { name, number }) => {
+  const response = await axios.put(`/contacts/${id}`, { name, number, id });
+  return response.data;
+};
+
+// ===================
+
 export const getAllContactsThunk = createAsyncThunk(
   'contacts/getContacts',
   async (_, thunkAPI) => {
@@ -56,6 +63,20 @@ export const removeContact = createAsyncThunk(
   }
 );
 
+export const editContact = createAsyncThunk(
+  'contacts/editContact',
+  async ({ name, number, id }, thunkAPI) => {
+    try {
+      const response = await updateContacts(id, { name, number, id });
+      return response;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+// ====================
+
 const handlePending = state => {
   state.isLoading = true;
 };
@@ -84,6 +105,24 @@ const handleDeleteFulfilled = (state, action) => {
     contact => contact.id === action.payload.id
   );
   state.items.splice(index, 1);
+
+  toast.success(<div>Contact deleted!</div>, {
+    duration: 4000,
+    icon: '✅',
+  });
+};
+
+const handleEditFulfilled = (state, action) => {
+  state.isLoading = false;
+  state.error = null;
+
+  const updatedContact = state.items.findIndex(
+    contact => contact.id === action.payload.id
+  );
+
+  if (updatedContact !== -1) {
+    state.items[updatedContact] = action.payload;
+  }
 };
 
 const slice = createSlice({
@@ -103,20 +142,11 @@ const slice = createSlice({
       .addCase(addNewContact.rejected, handleRejected)
       .addCase(removeContact.pending, handlePending)
       .addCase(removeContact.fulfilled, handleDeleteFulfilled)
-      .addCase(removeContact.rejected, handleRejected);
+      .addCase(removeContact.rejected, handleRejected)
+      .addCase(editContact.pending, handlePending)
+      .addCase(editContact.fulfilled, handleEditFulfilled)
+      .addCase(editContact.rejected, handleRejected);
   },
-
-  //   updateContact(state, action) {
-  //     const updatedContact = action.payload;
-  //     const currentContact = state.items.findIndex(
-  //       contact => contact.id === updatedContact.id
-  //     );
-
-  //     if (currentContact !== -1) {
-  //       state.items[currentContact] = updatedContact;
-  //     }
-  //   },
-  // },
 });
 
 export const contactsReducer = slice.reducer;
