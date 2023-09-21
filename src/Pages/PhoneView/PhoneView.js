@@ -1,6 +1,5 @@
 import { FiPhone } from 'react-icons/fi';
 import { DetailsWrapper, PhoneNumberWrapper } from './PhoneView.styled';
-
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { updatePhonebook } from 'redux/selectors';

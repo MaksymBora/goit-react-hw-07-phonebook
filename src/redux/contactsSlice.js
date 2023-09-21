@@ -24,6 +24,11 @@ export const updateContacts = async (id, { name, number }) => {
   return response.data;
 };
 
+export const fetchContactbyId = async id => {
+  const response = await axios.get(`/contacts/${id}`);
+  return response.data;
+};
+
 // ===================
 
 export const getAllContactsThunk = createAsyncThunk(
@@ -68,6 +73,18 @@ export const editContact = createAsyncThunk(
   async ({ name, number, id }, thunkAPI) => {
     try {
       const response = await updateContacts(id, { name, number, id });
+      return response;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const getContactById = createAsyncThunk(
+  'contacts/getContactById',
+  async (id, thunkAPI) => {
+    try {
+      const response = await fetchContactbyId(id);
       return response;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -125,6 +142,13 @@ const handleEditFulfilled = (state, action) => {
   }
 };
 
+const handleByIdFulfilled = (state, action) => {
+  state.isLoading = false;
+  state.error = null;
+
+  state.currentContact = action.payload;
+};
+
 const slice = createSlice({
   name: 'contacts',
   initialState: {
@@ -145,7 +169,10 @@ const slice = createSlice({
       .addCase(removeContact.rejected, handleRejected)
       .addCase(editContact.pending, handlePending)
       .addCase(editContact.fulfilled, handleEditFulfilled)
-      .addCase(editContact.rejected, handleRejected);
+      .addCase(editContact.rejected, handleRejected)
+      .addCase(getContactById.pending, handlePending)
+      .addCase(getContactById.fulfilled, handleByIdFulfilled)
+      .addCase(getContactById.rejected, handleRejected);
   },
 });
 

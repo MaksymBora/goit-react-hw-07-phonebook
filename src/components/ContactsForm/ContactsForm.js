@@ -15,6 +15,7 @@ import { TextField } from '@mui/material';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const ContactsSchema = Yup.object().shape({
   name: Yup.string().required('* Name is required'),
@@ -25,7 +26,7 @@ const initialValues = { name: '', number: '' };
 
 export const ContactsForm = () => {
   const allcontacts = useSelector(updatePhonebook);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSubmit = (values, { resetForm }) => {
@@ -38,6 +39,8 @@ export const ContactsForm = () => {
     }
 
     dispatch(addNewContact({ ...values }));
+    navigate('/');
+
     toast.success(
       <div>
         <b>{values.name}</b> added in phonebook

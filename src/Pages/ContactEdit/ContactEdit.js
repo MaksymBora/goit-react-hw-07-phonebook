@@ -40,7 +40,7 @@ const ContactEdit = () => {
 
     dispatch(editContact(updatedContact));
 
-    navigate(`/`);
+    navigate(-1);
 
     toast.success(
       <div>
