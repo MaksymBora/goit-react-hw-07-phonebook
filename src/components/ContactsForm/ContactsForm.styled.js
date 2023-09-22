@@ -7,12 +7,36 @@ export const StyledForm = styled(Form)`
   gap: 20px;
   padding: 10px;
   align-items: center;
+
+  div {
+    width: 100%;
+  }
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  @media screen and (min-width: 767px) {
+    div > div {
+      width: 300px;
+    }
+
+    svg {
+      width: 36px;
+      height: 36px;
+    }
+  }
 `;
 
 export const Wrapper = styled.div`
-  width: 500px;
+  width: 100%;
   font-weight: 500;
   padding: 10px;
+
+  @media screen and (min-width: 767px) {
+    width: 500px;
+  }
 `;
 
 export const InputWrapper = styled.div`
