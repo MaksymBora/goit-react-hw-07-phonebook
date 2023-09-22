@@ -69,6 +69,7 @@ const slice = createSlice({
     items: [],
     isLoading: false,
     error: null,
+    currentContact: null,
   },
   extraReducers: builder => {
     builder

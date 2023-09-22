@@ -10,6 +10,8 @@ export const selectTotalContacts = state => state.contacts.items.length;
 
 export const selectFilteredContact = state => state.filter;
 
+export const selectContactById = state => state.contacts.currentContact;
+
 export const selectFilteredByName = createSelector(
   [selectContacts, selectFilteredContact],
   (contacts, nameFromFilter) => {
