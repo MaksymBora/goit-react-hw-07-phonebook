@@ -70,7 +70,7 @@ export const ContactsForm = () => {
               name="name"
               multiline
               variant="standard"
-              style={{ width: '300px' }}
+              // style={{ width: '300px' }}
               className="fieldName"
             />
           </InputWrapper>
@@ -83,7 +83,7 @@ export const ContactsForm = () => {
               customInput={TextField}
               name="number"
               variant="standard"
-              style={{ width: '300px' }}
+              // style={{ width: '300px' }}
               format="+38 (0##) ### ## ##"
               allowEmptyFormatting={true}
               mask="_"

@@ -3,16 +3,24 @@ import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
   padding-top: 40px;
-  font-size: 14px;
+  font-size: 12px;
 
   h2 {
     margin-bottom: 20px;
+  }
+
+  @media screen and (min-width: 767px) {
+    font-size: 14px;
   }
 `;
 
 export const AvatarWrapper = styled.div`
   display: flex;
-  gap: 135px;
+  gap: 35px;
+
+  @media screen and (min-width: 767px) {
+    gap: 135px;
+  }
 `;
 
 export const BackBtn = styled(Link)`
