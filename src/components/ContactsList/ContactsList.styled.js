@@ -56,9 +56,9 @@ export const TableRawContent = styled.tr`
     .ButtonsWrapper {
       display: none;
     }
+  }
 
-    @media screen and (min-width: 767px) {
-
+  @media screen and (min-width: 767px) {
     .ButtonsWrapper {
       display: block;
     }

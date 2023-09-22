@@ -4,7 +4,12 @@ import { Link } from 'react-router-dom';
 export const TopContent = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   padding-top: 30px;
+
+  @media screen and (min-width: 767px) {
+    flex-direction: row;
+  }
 `;
 
 export const BackBtn = styled(Link)`
@@ -23,13 +28,34 @@ export const BackBtn = styled(Link)`
 export const AvatarWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 25px;
-  font-size: 24px;
+  gap: 10px;
+  flex-direction: column;
+
+  @media screen and (min-width: 767px) {
+    flex-direction: row;
+    gap: 25px;
+  }
 `;
 
 export const Avatar = styled.div`
   display: flex;
-  gap: 15px;
+  gap: 20px;
+  margin-right: 40px;
+
+  @media screen and (min-width: 767px) {
+    gap: 15px;
+    margin-right: 0px;
+  }
+`;
+
+export const Name = styled.h2`
+  font-size: 24px;
+  margin-bottom: 12px;
+
+  @media screen and (min-width: 767px) {
+    font-size: 32px;
+    margin-bottom: 0;
+  }
 `;
 
 export const BtnWrapper = styled.div`

@@ -9,6 +9,7 @@ export const HeaderWrapper = styled.header`
   top: 0;
   position: sticky;
   background-color: rgba(255, 255, 255, 1);
+  padding: 0 16px;
 
   @media screen and (min-width: 767px) {
     padding-bottom: 10px;
@@ -16,6 +17,7 @@ export const HeaderWrapper = styled.header`
     flex-direction: row;
     gap: 0px;
     justify-content: space-between;
+    padding: 0;
   }
 `;
 

@@ -12,6 +12,7 @@ import {
   RemoveButton,
   EditBtnWrapper,
   EditButton,
+  Name,
 } from './ContactDetails.styled';
 import { TbArrowBackUp } from 'react-icons/tb';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -74,7 +75,7 @@ const ContactDetails = () => {
             <AccountCircleIcon sx={{ fontSize: '210px', color: '#7E57C2' }} />
           </Avatar>
           <div>
-            <h2>{currentContact.name}</h2>
+            <Name>{currentContact.name}</Name>
           </div>
         </AvatarWrapper>
 
