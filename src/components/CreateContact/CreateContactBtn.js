@@ -1,5 +1,5 @@
 import AddIcon from '@mui/icons-material/Add';
-import { PaperStyled } from './CreateContact.styled';
+import { PaperStyled } from './CreateContactBtn.styled';
 import { Link } from 'react-router-dom';
 
 export const CreateContact = () => {

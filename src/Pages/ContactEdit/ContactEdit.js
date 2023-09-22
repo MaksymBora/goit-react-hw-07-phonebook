@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { selectContacts } from 'redux/selectors';
+import { selectCurrentContact } from 'redux/selectors';
 import {
   StyledForm,
   Wrapper,
@@ -23,9 +23,10 @@ const ContactsSchema = Yup.object().shape({
 });
 
 const ContactEdit = () => {
-  const allcontacts = useSelector(selectContacts);
   const { id } = useParams();
-  const currentContact = allcontacts.find(contact => contact.id === id);
+  const currentContact = useSelector(state =>
+    selectCurrentContact(state, { id })
+  );
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

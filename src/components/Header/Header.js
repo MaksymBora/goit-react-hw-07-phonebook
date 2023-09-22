@@ -1,7 +1,7 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Title, Wrapper, HeaderWrapper } from './Header.styled';
 import { Filter } from 'components/Filter/Filter';
-import { CreateContact } from 'components/CreateContact/CreateContact';
+import { CreateContact } from 'components/CreateContact/CreateContactBtn';
 import { Link } from 'react-router-dom';
 
 export const Header = () => {

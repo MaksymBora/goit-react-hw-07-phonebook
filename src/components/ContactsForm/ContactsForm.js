@@ -17,6 +17,7 @@ import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
+// ====== Validation ========= //
 const ContactsSchema = Yup.object().shape({
   name: Yup.string().required('* Name is required'),
   number: Yup.string().required('* Phone number is required'),

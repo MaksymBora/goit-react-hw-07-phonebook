@@ -1,7 +1,7 @@
 import { Suspense, useRef } from 'react';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/selectors';
+import { selectCurrentContact } from 'redux/selectors';
 import {
   BackBtn,
   AvatarWrapper,
@@ -21,12 +21,13 @@ import CircularProgress from '@mui/material/CircularProgress';
 const ContactDetails = () => {
   const location = useLocation();
   const { id } = useParams();
-  const contacts = useSelector(selectContacts);
+  const currentContact = useSelector(state =>
+    selectCurrentContact(state, { id })
+  );
+
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-
-  const currentContact = contacts.find(contact => contact.id === id);
 
   const backLinkLocation = useRef(location.state?.from ?? '/');
 
