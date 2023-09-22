@@ -42,6 +42,7 @@ export const ContactList = ({ stateItem }) => {
   const filteredContacts = contacts.filter(({ name }) =>
     name.toLowerCase().includes(nameFromFilter.toLowerCase())
   );
+
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
