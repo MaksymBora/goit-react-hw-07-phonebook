@@ -15,7 +15,7 @@ import { TextField } from '@mui/material';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import toast from 'react-hot-toast';
-import { editContact } from 'redux/contactsSlice';
+import { editContact } from 'redux/thunk';
 
 const ContactsSchema = Yup.object().shape({
   name: Yup.string().required('* Name is required'),

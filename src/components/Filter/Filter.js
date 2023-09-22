@@ -4,9 +4,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import { SearchStyled, PaperStyledSearch } from './Filter.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { contactsFilter } from 'redux/filterSlice';
+import { filteredContact } from 'redux/selectors';
 
 export const Filter = () => {
-  const nameFromFilter = useSelector(state => state.filter);
+  const nameFromFilter = useSelector(filteredContact);
   const dispatch = useDispatch();
 
   return (

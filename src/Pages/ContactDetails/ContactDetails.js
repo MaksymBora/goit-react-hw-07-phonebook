@@ -15,7 +15,7 @@ import {
 } from './ContactDetails.styled';
 import { TbArrowBackUp } from 'react-icons/tb';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { removeContact } from 'redux/contactsSlice';
+import { removeContact } from 'redux/thunk';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const ContactDetails = () => {
