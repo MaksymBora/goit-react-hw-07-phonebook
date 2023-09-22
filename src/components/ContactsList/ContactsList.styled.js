@@ -52,15 +52,13 @@ export const TableRawContent = styled.tr`
 
   &:hover {
     background-color: rgba(245, 245, 245, 1);
-
-    .ButtonsWrapper {
-      display: none;
-    }
   }
 
   @media screen and (min-width: 767px) {
-    .ButtonsWrapper {
-      display: block;
+    &:hover {
+      .ButtonsWrapper {
+        display: block;
+      }
     }
   }
 `;
