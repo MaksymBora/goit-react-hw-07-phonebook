@@ -25,7 +25,13 @@ export const TableHor = styled.th`
   padding: 12px 16px;
   text-align: left;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  font-weight: 500;
+  font-weight: 400;
+  font-size: 16px;
+
+  @media screen and (min-width: 767px) {
+    font-size: 18px;
+    font-weight: 500;
+  }
 `;
 
 export const TotalContacts = styled.thead`
@@ -48,29 +54,50 @@ export const TableRawContent = styled.tr`
     background-color: rgba(245, 245, 245, 1);
 
     .ButtonsWrapper {
+      display: none;
+    }
+
+    @media screen and (min-width: 767px) {
+
+    .ButtonsWrapper {
       display: block;
     }
   }
 `;
 
 export const TableDataName = styled.td`
-  padding: 1px 16px;
+  padding: 1px 10px;
   display: flex;
   align-items: center;
   gap: 20px;
   font-size: 18px;
+
+  @media screen and (min-width: 767px) {
+    padding: 1px 16px;
+  }
 `;
 
 export const Name = styled.span`
   padding-top: 20px;
   padding-bottom: 20px;
   line-height: 24px;
+  font-size: 16px;
+
+  @media screen and (min-width: 767px) {
+    font-size: 18px;
+  }
 `;
 
 export const TableDataNumber = styled.td`
-  padding: 1px 16px;
+  padding: 1px 10px;
   font-size: 18px;
   line-height: 24px;
+  font-size: 14px;
+
+  @media screen and (min-width: 767px) {
+    font-size: 18px;
+    padding: 1px 16px;
+  }
 `;
 
 // ====

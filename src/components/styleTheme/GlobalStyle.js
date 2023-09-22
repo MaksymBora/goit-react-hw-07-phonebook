@@ -10,6 +10,7 @@ body {
 	background: ${({ theme }) => theme.colors.white};
 	margin: 0;
 	color: ${({ theme }) => theme.colors.textPrimary};
+  
   }
 
 code {

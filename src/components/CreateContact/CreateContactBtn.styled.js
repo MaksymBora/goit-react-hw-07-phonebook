@@ -21,3 +21,28 @@ export const StyledLink = styled(Link)`
     display: block;
   }
 `;
+
+export const BtnText = styled.p``;
+
+export const MobStyledLink = styled(Link)`
+  text-decoration: 'none';
+  position: absolute;
+  right: 0;
+  bottom: -55vh;
+
+  @media screen and (min-height: 271px) {
+    bottom: -55vh;
+  }
+
+  @media screen and (min-height: 400px) {
+    bottom: -72vh;
+  }
+
+  @media screen and (min-height: 500px) {
+    bottom: -76vh;
+  }
+
+  @media screen and (min-width: 767px) {
+    display: none;
+  }
+`;
