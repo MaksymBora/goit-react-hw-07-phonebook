@@ -38,10 +38,6 @@ export const MobStyledLink = styled(Link)`
     bottom: -72vh;
   }
 
-  @media screen and (min-height: 500px) {
-    bottom: -74vh;
-  }
-
   @media screen and (min-width: 767px) {
     display: none;
   }
