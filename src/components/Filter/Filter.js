@@ -18,7 +18,6 @@ export const Filter = () => {
         p: '2px 4px',
         display: 'flex',
         alignItems: 'center',
-        width: 300,
         bgcolor: 'rgb(241 243 244)',
         boxShadow: 0,
         borderRadius: '8px',

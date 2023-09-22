@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Paper } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export const PaperStyled = styled(Paper)`
   cursor: pointer;
@@ -9,5 +10,14 @@ export const PaperStyled = styled(Paper)`
 
   &:hover {
     box-shadow: -1px 5px 8px -2px rgba(0, 0, 0, 0.65);
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  display: none;
+  text-decoration: 'none';
+
+  @media screen and (min-width: 767px) {
+    display: block;
   }
 `;

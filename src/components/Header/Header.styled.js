@@ -2,14 +2,21 @@ import styled from 'styled-components';
 
 export const HeaderWrapper = styled.header`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  align-items: start;
+  flex-direction: column;
+  gap: 10px;
   z-index: 10;
   top: 0;
   position: sticky;
   background-color: rgba(255, 255, 255, 1);
+
+  @media screen and (min-width: 767px) {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    flex-direction: row;
+    gap: 0px;
+    justify-content: space-between;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -21,5 +28,9 @@ export const Wrapper = styled.div`
 export const Title = styled.div`
   display: block;
   font-weight: 700;
-  font-size: 28px;
+  font-size: 24px;
+
+  @media screen and (min-width: 767px) {
+    font-size: 28px;
+  }
 `;

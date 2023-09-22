@@ -1,10 +1,9 @@
 import AddIcon from '@mui/icons-material/Add';
-import { PaperStyled } from './CreateContactBtn.styled';
-import { Link } from 'react-router-dom';
+import { PaperStyled, StyledLink } from './CreateContactBtn.styled';
 
 export const CreateContact = () => {
   return (
-    <Link to="/addContact" style={{ textDecoration: 'none' }}>
+    <StyledLink to="/addContact" style={{ textDecoration: 'none' }}>
       <PaperStyled
         elevation={3}
         sx={{
@@ -19,6 +18,6 @@ export const CreateContact = () => {
         <AddIcon type="button" sx={{ ml: 'auto', mr: 'auto' }} />
         <p>Create contact</p>
       </PaperStyled>
-    </Link>
+    </StyledLink>
   );
 };
