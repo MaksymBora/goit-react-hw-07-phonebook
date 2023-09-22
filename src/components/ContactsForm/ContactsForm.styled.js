@@ -12,9 +12,19 @@ export const StyledForm = styled(Form)`
     width: 100%;
   }
 
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+
   @media screen and (min-width: 767px) {
     div > div {
       width: 300px;
+    }
+
+    svg {
+      width: 36px;
+      height: 36px;
     }
   }
 `;

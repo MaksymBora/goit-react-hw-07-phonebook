@@ -63,27 +63,25 @@ export const ContactsForm = () => {
       >
         <StyledForm autoComplete="off">
           <InputWrapper>
-            <PersonOutlineIcon sx={{ fontSize: 36 }} />
+            <PersonOutlineIcon />
             <Field
               as={TextField}
               label="Name"
               name="name"
               multiline
               variant="standard"
-              // style={{ width: '300px' }}
               className="fieldName"
             />
           </InputWrapper>
           <ErrorMessage name="name" component="span" style={{ color: 'red' }} />
 
           <InputWrapper>
-            <PhoneEnabledIcon sx={{ fontSize: 36 }} />
+            <PhoneEnabledIcon />
             <Field
               as={PatternFormat}
               customInput={TextField}
               name="number"
               variant="standard"
-              // style={{ width: '300px' }}
               format="+38 (0##) ### ## ##"
               allowEmptyFormatting={true}
               mask="_"
