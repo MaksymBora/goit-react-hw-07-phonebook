@@ -18,9 +18,9 @@ import Avatar from '@mui/material/Avatar';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllContactsThunk, removeContact } from 'redux/thunk';
 import {
-  filteredContact,
-  totalContacts,
-  updatePhonebook,
+  selectFilteredContact,
+  selectTotalContacts,
+  selectContacts,
 } from 'redux/selectors';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -35,9 +35,9 @@ function getRandomHexColor() {
 }
 
 export const ContactList = ({ stateItem }) => {
-  const contacts = useSelector(updatePhonebook);
-  const contactsAmount = useSelector(totalContacts);
-  const nameFromFilter = useSelector(filteredContact);
+  const contacts = useSelector(selectContacts);
+  const contactsAmount = useSelector(selectTotalContacts);
+  const nameFromFilter = useSelector(selectFilteredContact);
 
   const filteredContacts = contacts.filter(({ name }) =>
     name.toLowerCase().includes(nameFromFilter.toLowerCase())

@@ -10,7 +10,7 @@ import {
 import { PatternFormat } from 'react-number-format';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewContact } from 'redux/thunk';
-import { updatePhonebook } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 import { TextField } from '@mui/material';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
@@ -25,7 +25,7 @@ const ContactsSchema = Yup.object().shape({
 const initialValues = { name: '', number: '' };
 
 export const ContactsForm = () => {
-  const allcontacts = useSelector(updatePhonebook);
+  const allcontacts = useSelector(selectContacts);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

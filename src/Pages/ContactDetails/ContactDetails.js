@@ -1,7 +1,7 @@
 import { Suspense, useRef } from 'react';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { updatePhonebook } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 import {
   BackBtn,
   AvatarWrapper,
@@ -21,7 +21,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 const ContactDetails = () => {
   const location = useLocation();
   const { id } = useParams();
-  const contacts = useSelector(updatePhonebook);
+  const contacts = useSelector(selectContacts);
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
